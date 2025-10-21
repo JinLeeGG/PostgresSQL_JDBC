@@ -48,7 +48,7 @@ public class CC4skeleton {
 				+ "SELECT\n"
                 + "    s.supnr,"
                 + "    s.supname,"
-				+ "    COUNT(po.ponr) AS num_of_outstanding_orders\n"
+				+ "    COUNT(po.ponr) AS total_num_of_outstanding_orders\n"
 				+ "FROM\n"
 				+ "    supplier s\n"
 				+ "LEFT JOIN\n"
@@ -111,14 +111,14 @@ public class CC4skeleton {
 		System.out.println("////////////////////////////////");
 	        String qu7dot15E= ""
 				+ "SELECT DISTINCT\n"
-                + "    pl.ponr\n"
+                + "    ponr\n"
 				+ "FROM\n"
-				+ "    po_line pl\n"
+				+ "    po_line\n"
                 + "WHERE\n"
-				+ "    pl.prodnr IN (\n"
+				+ "    prodnr IN (\n"
 				+ "        SELECT p.prodnr\n"        
 				+ "        FROM product p\n"
-				+ "        WHERE p.prodtype IN ('sparkling', 'red')\n" 
+				+ "        WHERE prodtype = 'sparkling' OR prodtype = 'red'\n" 
 				+ ")";             
         qe.executeQuery(qu7dot15E);		
 		
